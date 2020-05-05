@@ -1,0 +1,19 @@
+<h1>Books#index</h1>
+<p>Find me in app/views/books/index.html.erb</p>
+
+<% @books.each do |book| %>
+
+<%= book.title %>
+
+<% end %>
+
+<%= form_for @post do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+<%= f.label :body %>
+<%= f.text_area :body %>
+
+<%= f.submit %>
+
+<% end %>
