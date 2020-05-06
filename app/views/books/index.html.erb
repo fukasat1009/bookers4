@@ -1,19 +1,47 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+ <body>
+  <div class="container">
+      <div class="row">
+        <div class="col-xs-3" > 
+          <%= form_for @post do |f| %>
+           <%= f.label :title %>
+           <%= f.text_field :title %>
+           <%= f.label :body %>
+           <%= f.text_area :body %>
+           <%= f.submit %>
+           <% end %>
+        </div>
+      <div class="col-xs-9">
+       <table class="table table-striped">
+        <thead>
+          <tr>
+   	       <th width="10%">image</th>
+   	       <th width="40%">title</th>
+   	       <th width="40%">opinion</th>
+          </tr>
+        </thead>
+            <% @books.each do |book| %>
+             <tbody>
+              <tr>
+               <td>
+                <%= link_to user_path(book.user.id) do %>
+                <%= attachment_image_tag book.user, :profile_image, fallback: "no-image.png",size: "50x50" %>
+            <% end %>
+               </td>
+              <td><%= link_to book.title, book_path(book) %></td>
+               <td><%= book.body %></td>
+               </tr>
+            </tbody>
+        <% end %>
+       </table>
+     </div>
+    </div>
+  </div>
+ </body>
+</html>
 
-<% @books.each do |book| %>
 
-<%= book.title %>
 
-<% end %>
 
-<%= form_for @post do |f| %>
-<%= f.label :title %>
-<%= f.text_field :title %>
 
-<%= f.label :body %>
-<%= f.text_area :body %>
-
-<%= f.submit %>
-
-<% end %>

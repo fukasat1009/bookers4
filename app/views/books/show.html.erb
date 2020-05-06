@@ -1,2 +1,39 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+ <body>
+  <div class="container">
+      <div class="row">
+        <div class="col-xs-3" >
+         <%= form_for @post do |f| %>
+           <%= f.label :title %>
+           <%= f.text_field :title %>
+           <%= f.label :body %>
+           <%= f.text_area :body %>
+           <%= f.submit %>
+           <% end %>
+        </div>
+      <div class="col-xs-9">
+
+        <table class="table table-striped">
+         <thead>
+          <tr>
+   	       <th width="10%">image</th>
+   	       <th width="40%">title</th>
+   	       <th width="40%">opinion</th>
+          </tr>
+        </thead>
+        
+            <tbody>
+              <tr>
+               <td> <%= attachment_image_tag  @book.user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
+               <td><%= @book.title %></td>
+               <td><%= @book.body %></tg>
+              </tr>
+            </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+ </body>
+</html>
+

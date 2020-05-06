@@ -1,8 +1,27 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-
-<% @users.each do |user| %>
-<%= attachment_image_tag user, :profile_image, fallback:"no-image.png" %>
-<%= user.name %>
-<%= link_to "Show", user_path(user), class:"button is-warning is-light" %>
-<% end %>
+<!DOCTYPE html>
+<html>
+ <body>
+  <table class="table table-striped">
+   <thead>
+    <tr>
+   	 <th width="30%">image</th>
+   	 <th width="60%">name</th>
+   	 <th width="10%">show</th>
+    </tr>
+   </thead>
+    <% @users.each do |user| %>
+    <tbody>
+     <tr>
+      <td>
+      
+      		<%= attachment_image_tag user, :profile_image, fallback:"no-image.png" , size: "50x50" %>
+    
+      </td>
+      <td><%= user.name %></td>
+      <td><%= link_to "Show", user_path(user), class:"button is-warning is-light" %></td>
+     </tr>
+    </tbody>
+     <% end %>
+   </table>
+ </body>
+</html>

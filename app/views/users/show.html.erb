@@ -1,9 +1,36 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+ <body>
 
-<%= attachment_image_tag @user, :profile_image, fallback:"no-image.png" %>
+  <table class="table table-striped">
+   <thead>
+    <tr>
+   	 <th width="10%">image</th>
+   	 <th width="40%">title</th>
+   	 <th width="40%">opinion</th>
+    </tr>
+   </thead>
+      <% @user.books. each do |book| %>
+    <tbody>
+     <tr>
+      <td>
+     <%= attachment_image_tag @user, :profile_image, fallback:"no-image.png",size: "50x50" %>
+      </td>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+      
+     </tr>
+    </tbody>
+     <% end %>
+   </table>
+ 
+ </body>
+</html>
 
+
+<% if @user.id == current_user.id %>
 <%= link_to "edit", edit_user_path(@user), class:"button is-warning is-light" %>
+<% end %>
 
 <%= @user.name %>
 <%= @user.introduction %>
