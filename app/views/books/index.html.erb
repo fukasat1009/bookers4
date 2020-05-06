@@ -2,25 +2,46 @@
 <html>
  <body>
   <div class="container">
-      <div class="row">
-        <div class="col-xs-3" > 
-          <%= form_for @post do |f| %>
-           <%= f.label :title %>
-           <%= f.text_field :title %>
-           <%= f.label :body %>
-           <%= f.text_area :body %>
-           <%= f.submit %>
-           <% end %>
-        </div>
-      <div class="col-xs-9">
-       <table class="table table-striped">
-        <thead>
+   <div class="row">
+    <div class="col-xs-3" >
+      <h2>User Info</h2>
+        <table class="table table-striped">
           <tr>
-   	       <th width="10%">image</th>
-   	       <th width="40%">title</th>
-   	       <th width="40%">opinion</th>
+           <td><%= attachment_image_tag @user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
           </tr>
-        </thead>
+          <tr>
+         <th>name</th>
+           <td>
+           <!-- ここにユーザーネームを実装-->
+           </td>
+             </tr>
+               <tr>
+                 <th>introduction</th>
+                   <td>
+                   <!-- ここにプロフィール文を実装-->
+                   </td>
+                </tr>
+         </table>
+        
+    
+          <%= form_for @post do |f| %>
+           <h2>New Book</h2>
+            <%= f.label :title %>
+             <%= f.text_field :title %>
+              <%= f.label :body %>
+             <%= f.text_area :body %>
+            <%= f.submit %>
+           <% end %>
+         </div>
+         <div class="col-xs-9">
+          <table class="table table-striped">
+           <thead>
+            <tr>
+             <th width="10%">image</th>
+              <th width="40%">title</th>
+               <th width="40%">opinion</th>
+            </tr>
+            </thead>
             <% @books.each do |book| %>
              <tbody>
               <tr>

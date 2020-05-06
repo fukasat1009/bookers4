@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html>
  <body>
-
-  <table class="table table-striped">
-   <thead>
-    <tr>
-   	 <th width="10%">image</th>
-   	 <th width="40%">title</th>
-   	 <th width="40%">opinion</th>
-    </tr>
-   </thead>
-      <% @user.books. each do |book| %>
-    <tbody>
-     <tr>
-      <td>
+  <div class="container">
+   <div class="row">
+    <div class="col-xs-3" >
+      <h2>User Info</h2>
+        <table class="table table-striped">
+          <tr>
+           <td><%= attachment_image_tag @user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
+          </tr>
+          <tr>
+         <th>name</th><td><%= @user.name %></td>
+        </tr>
+        <tr>
+         <th>introduction</th><td><%= @user.introduction %></td>
+           </tr>
+         </table>
+         <%= link_to "", edit_user_path(@user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
+    
+          <%= form_for @post do |f| %>
+           <h2>New Book</h2>
+            <%= f.label :title %>
+             <%= f.text_field :title %>
+              <%= f.label :body %>
+             <%= f.text_area :body %>
+            <%= f.submit %>
+           <% end %>
+         </div>
+         <div class="col-xs-9">
+          <table class="table table-striped">
+           <thead>
+            <tr>
+   	         <th width="10%">image</th>
+   	          <th width="40%">title</th>
+   	           <th width="40%">opinion</th>
+            </tr>
+            </thead>
+            <% @user.books. each do |book| %>
+          <tbody>
+           <tr>
+            <td>
      <%= attachment_image_tag @user, :profile_image, fallback:"no-image.png",size: "50x50" %>
       </td>
       <td><%= book.title %></td>
@@ -23,14 +49,11 @@
     </tbody>
      <% end %>
    </table>
- 
+    </div>
+   </div>
+  </div>
  </body>
 </html>
 
 
-<% if @user.id == current_user.id %>
-<%= link_to "edit", edit_user_path(@user), class:"button is-warning is-light" %>
-<% end %>
 
-<%= @user.name %>
-<%= @user.introduction %>

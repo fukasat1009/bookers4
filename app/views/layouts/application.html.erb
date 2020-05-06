@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>Bookers4</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,7 +12,37 @@
 
   <body>
     
-    <% if flash[:notice] %>
+    <nav class="navbar navbar-dark" style="background-color:#000;">
+
+　
+　
+<div style="position:absolute; top:-20px; left:100px;">
+<h3><font color="white">Bookers</font></h3></div>
+    
+
+   
+
+      
+       
+          <p class="text-right">
+    <% if user_signed_in? %>  
+    <%= link_to "logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-share aria-hidden=true text-muted" %>
+    <%= link_to "Home", user_path(current_user), class:"glyphicon glyphicon-home aria-hidden=true text-muted" %>
+     <%= link_to "User", users_path, class:"glyphicon glyphicon-user aria-hidden=true text-muted" %>
+     <%= link_to "Books", books_path, class:"glyphicon glyphicon-book aria-hidden=true text-muted" %>
+
+    <% else %>
+    <%= link_to "Login", new_user_session_path, class:"glyphicon glyphicon-save aria-hidden=true text-muted" %>
+    <%= link_to "Sign Up", new_user_registration_path, class:"glyphicon glyphicon-edit aria-hidden=true text-muted" %>
+    <%= link_to "About", home_about_path, class:"glyphicon glyphicon-link aria-hidden=true text-muted" %>
+    <%= link_to "Home", root_path, class:"glyphicon glyphicon-home aria-hidden=true text-muted" %>
+    <% end %>
+  </p>
+
+
+</nav>
+<font color="green">
+<% if flash[:notice] %>
     <div class="notification is-info">
       <p class="notice"><%= notice %></p>
     </div>
@@ -22,22 +53,9 @@
       <p class="alert"><%= aleat %></p>
     </div>
     <% end %>
-
-  
-    <% if user_signed_in? %>  
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "button is-warning is-light" %>
-    <%= link_to "Home", user_path(current_user), class:"button is-warning is-light" %>
-     <%= link_to "User", users_path, class:"button is-warning is-light" %>
-     <%= link_to "Books", books_path, class:"button is-warning is-light" %>
-
-    <% else %>
-    <%= link_to "ログイン", new_user_session_path, class:"button is-warning is-light" %>
-    <%= link_to "新規登録", new_user_registration_path, class:"button is-warning is-light" %>
-    <%= link_to "About", home_about_path, class:"button is-warning is-light" %>
-    <% end %>
-
-
+  </font>
 
     <%= yield %>
+
   </body>
 </html>
