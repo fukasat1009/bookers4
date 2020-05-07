@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
  <body>
+
+  
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
   <div class="container">
    <div class="row">
     <div class="col-xs-3" >
-      <h2>User Info</h2>
+      <h2>User info</h2>
         <table class="table table-striped">
           <tr>
            <td><%= attachment_image_tag @user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
@@ -16,10 +24,10 @@
          <th>introduction</th><td><%= @user.introduction %></td>
            </tr>
          </table>
-         <%= link_to "", edit_user_path(@user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
+         <%= link_to "", edit_user_path(current_user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
     
           <%= form_for @post do |f| %>
-           <h2>New Book</h2>
+           <h2>New book</h2>
             <%= f.label :title %>
              <%= f.text_field :title %>
               <%= f.label :body %>
@@ -42,7 +50,7 @@
             <td>
      <%= attachment_image_tag @user, :profile_image, fallback:"no-image.png",size: "50x50" %>
       </td>
-      <td><%= book.title %></td>
+      <td><%= link_to book.title, book_path(book) %></td>
       <td><%= book.body %></td>
       
      </tr>

@@ -1,5 +1,12 @@
-<h1>Users#edit</h1>
+<h1>User info</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
+
+<% if @user.errors.any? %>
+        <%= @user.errors.count %>error
+        <% @user.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+        <% end %>
 
 <%= form_for @user do |f| %>
 
@@ -13,5 +20,7 @@
 <%= f.text_field :introduction %>
 
 <%= f.submit %>
+
+
 
 <% end %>

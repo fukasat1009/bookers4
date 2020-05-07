@@ -4,3 +4,9 @@
 <p><%= link_to "Log in", new_user_session_path, class:"button is-warning is-light" %></p>
     
     <p><%= link_to "Sign Up", new_user_registration_path, class:"button is-warning is-light" %></p>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
