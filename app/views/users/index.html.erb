@@ -7,22 +7,24 @@
       <h2>User Info</h2>
         <table class="table table-striped">
           <tr>
-           <td><%= attachment_image_tag @user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
+           <td><%= attachment_image_tag current_user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
           </tr>
           <tr>
          <th>name</th>
            <td>
            <!-- ここにユーザーネームを実装-->
+           <%= current_user.name %>
            </td>
              </tr>
                <tr>
                  <th>introduction</th>
                    <td>
                    <!-- ここにプロフィール文を実装-->
+                   <%=current_user.introduction %>
                    </td>
                 </tr>
          </table>
-        
+         <%= link_to "", edit_user_path(current_user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
     
           <%= form_for @post do |f| %>
            <h2>New Book</h2>

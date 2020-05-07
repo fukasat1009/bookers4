@@ -7,21 +7,24 @@
       <h2>User Info</h2>
         <table class="table table-striped">
           <tr>
-           <td><%= attachment_image_tag @user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
+           <td><%= attachment_image_tag current_user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
           </tr>
           <tr>
          <th>name</th>
            <td>
            <!-- ここにユーザーネームを実装-->
+           <%= current_user.name %>
            </td>
              </tr>
                <tr>
                  <th>introduction</th>
                    <td>
                    <!-- ここにプロフィール文を実装-->
+                    <%= current_user.introduction %>
                    </td>
                 </tr>
          </table>
+         <%= link_to "", edit_user_path(current_user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
         
     
           <%= form_for @post do |f| %>
@@ -40,14 +43,20 @@
              <th width="10%">image</th>
               <th width="40%">title</th>
                <th width="40%">opinion</th>
+               <th width="10%">edit</th>
             </tr>
             </thead>
         
             <tbody>
+              <h2>Book detail</h2>
               <tr>
                <td> <%= attachment_image_tag  @book.user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
                <td><%= @book.title %></td>
-               <td><%= @book.body %></tg>
+               <td><%= @book.body %></td>
+               <td><%= link_to "EDIT", edit_book_path(current_user) %>
+                   <%= link_to "delete", book_path(@book), method: :delete %>
+                   
+               </td>
               </tr>
             </tbody>
       </table>
