@@ -1,12 +1,39 @@
-<h1>Home#index</h1>
-<h1> Wellcome to bookers!!!!</h1>
 
-<p><%= link_to "Log in", new_user_session_path, class:"button is-warning is-light" %></p>
-    
-    <p><%= link_to "Sign Up", new_user_registration_path, class:"button is-warning is-light" %></p>
+<div class="container">
 
+
+   <font color="green">
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
       </div>
     <% end %>
+   </font>
+
+   <h1> wellcome to <span class="glyphicon glyphicon-book" ></span>Bookers!!</h1>
+
+   <p>In <span class="glyphicon glyphicon-book"><B>Bookers</B></span></p>
+
+   <p>you can share and exchange your opinions , inpressions , and emotions</p>
+
+   <p>about various books!</p>
+　　
+　　
+
+	<div class="row">
+		<div class="col-sx-6">
+	
+   <%= link_to "Log in", new_user_session_path,  :style=>"color:black;",class:"btn btn-block btn-info " %>
+
+
+   <div class="col-sx-6"> 
+    <%= link_to "Sign Up", new_user_registration_path,:style=>"color:black;", class:"btn btn-block btn-success" %>
+
+    </div>
+</div>
+
+   
+
+   
+
+</div>

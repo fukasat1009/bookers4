@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
  <body>
-
+　　　<font color="green">
       <% if flash[:notice] %>
-      <div class="flash">
+       <div class="flash">
         <%= flash[:notice] %>
-      </div>
-    <% end %>
+       </div>
+      <% end %>
+     </font>
+
   <div class="container">
    <div class="row">
     <div class="col-xs-3" >
@@ -65,8 +67,8 @@
                <td><%= @book.title %></td>
                <td><%= @book.body %></td>
                <% if @book.user == current_user %>
-               <td><%= link_to "Edit", edit_book_path(@book),class: "btn btn-default" %></td>
-                  <td><%= link_to "Destroy", book_path(@book), method: :delete, data:{confirm: "本当に削除しますか？"}, class: "btn btn-default" %></td>
+               <td><%= link_to "Edit", edit_book_path(@book),class: "btn btn-success" %></td>
+                  <td><%= link_to "Destroy", book_path(@book), method: :delete, data:{confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
                    <% end %>
                    
                </td>
