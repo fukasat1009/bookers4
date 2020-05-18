@@ -43,6 +43,16 @@
              <%= f.text_area :body %>
             <%= f.submit %>
            <% end %>
+
+           <%= form_for [@book,@book_comment] do |f| %>
+           <h2>New Cooment</h2>
+            <%= f.label :comment %>
+             <%= f.text_field :comment %>
+            
+            <%= f.submit %>
+           <% end %>
+
+
          </div>
          <div class="col-xs-9">
           <table class="table table-striped">
@@ -70,11 +80,35 @@
                <td><%= link_to "Edit", edit_book_path(@book),class: "btn btn-success" %></td>
                   <td><%= link_to "Destroy", book_path(@book), method: :delete, data:{confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
                    <% end %>
+                 </table>
+
+                 <table>
                    
+                   <% @book.book_comments.each do |book_comment| %>
+
+                   <% if @book_comment.errors.any? %>
+                   <%= @book_comment.errors.count %>error
+                  <% @book_comment.errors.full_messages.each do |message| %>
+                  <%= message %> 
+                   <% end %>
+                   <% end %>
+ 
+                   <th width="10%">user</th>
+                   <th width="60%">comment</th>
+                    <tr>
+                      <td><%= book_comment.user.name %></td>
+                      <td><%= book_comment.comment %></td>
+                      <% if book_comment.user == current_user %>
+                      <td><%= link_to "Destroy",book_book_comments_path(book_comment), method: :delete, date:{confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
+                      <% end %>
+                 
+                 
+                  </tr>
+                     <% end %>
                </td>
               </tr>
             </tbody>
-      </table>
+   
       </div>
     </div>
   </div>
