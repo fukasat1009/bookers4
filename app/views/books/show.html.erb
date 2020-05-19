@@ -35,23 +35,22 @@
          <%= link_to "", user_path(current_user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
         
     
-          <%= form_for @post do |f| %>
-           <h2>New book</h2>
-            <%= f.label :title %>
-             <%= f.text_field :title %>
-              <%= f.label :body %>
-             <%= f.text_area :body %>
-            <%= f.submit %>
-           <% end %>
+          　　　　　　<%= form_for @post do |f| %>
+          　　　　　　　　 <h2>New book</h2>
+          　　　　　　　　  <%= f.label :title %>
+          　　　　　　　　   <%= f.text_field :title %>
+          　　　　　　　　    <%= f.label :body %>
+          　　　　　　　　   <%= f.text_area :body %>
+          　　　　　　　　  <%= f.submit %>
+          　　　　　　<% end %>
 
-           <%= form_for [@book,@book_comment] do |f| %>
-           <h2>New Cooment</h2>
-            <%= f.label :comment %>
-             <%= f.text_field :comment %>
-            
-            <%= f.submit %>
-           <% end %>
-
+           　　　　　<%= form_for [@book,@book_comment] do |f| %>
+           　　　　　　　<h2>New Cooment</h2>
+           　　　　　　　 <%= f.label :comment %>
+           　　　　　　　  <%= f.text_field :comment %>
+           　　　　　　　 <%= f.submit %>
+           　　　　　<% end %>
+　　　　　　　
 
          </div>
          <div class="col-xs-9">
@@ -80,54 +79,55 @@
                <td><%= link_to "Edit", edit_book_path(@book),class: "btn btn-success" %></td>
                   <td><%= link_to "Destroy", book_path(@book), method: :delete, data:{confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
                    <% end %>
+                   <td>
+                     <% if @book.favorited_by?(current_user) %>
+    
+           <%= link_to book_favorites_path(@book), method: :delete do %>
+           <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+            <% end %>
+           <%= @book.favorites.count %> 
+    
+          
+            <% else %>
+         
+                <%= link_to book_favorites_path(@book), method: :post do %>
+                  <i class="far fa-heart" aria-hidden="true"></i>
+                   <% end %>
+                <%= @book.favorites.count %> 
+               
+          
+                    <% end %>
+                   </td>
                  </table>
 
                  <table>
                    
-                   <% @book.book_comments.each do |book_comment| %>
+                  <% @book.book_comments.each do |book_comment| %>
 
-                   <% if @book_comment.errors.any? %>
-                   <%= @book_comment.errors.count %>error
-                  <% @book_comment.errors.full_messages.each do |message| %>
-                  <%= message %> 
-                   <% end %>
-                   <% end %>
+                   　　<% if @book_comment.errors.any? %>
+                  　　　　<%= @book_comment.errors.count %>error
+                  　　　<% @book_comment.errors.full_messages.each do |message| %>
+                  　
+                  　<%= message %> 
+                  　　　　<% end %>
+                 　　　 <% end %>
  
                    <th width="10%">user</th>
                    <th width="60%">comment</th>
-                    <tr>
-                      <td><%= book_comment.user.name %></td>
-                      <td><%= book_comment.comment %></td>
+                <tr>
+                      　　<td><%= book_comment.user.name %></td>
+                     　　 <td><%= book_comment.comment %></td>
                       <% if book_comment.user == current_user %>
-                      <td><%= link_to "Destroy",book_book_comments_path(book_comment), method: :delete, date:{confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
-                      <% end %>
-
-       <% if @book.favorited_by?(current_user) %>
-<li>
-    <%= link_to book_favorites_path(@book), method: :delete do %>
-    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-    <%= @book.favorites.count %> いいね
-    <% end %>
-</li>
-<% else %>
-<li>
-    <%= link_to book_favorites_path(@book), method: :post do %>
-    <i class="fa fa-heart-o" aria-hidden="true"></i>
-    <%= @book.favorites.count %> いいね
-    <% end %>
-</li>
-<% end %>
-                 
-                 
-                  </tr>
-                     <% end %>
-               </td>
-              </tr>
-            </tbody>
-   
+                      　　<td><%= link_to "Destroy",book_book_comments_path(book_comment), method: :delete, data:{confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
+                  <% end %>
+                </tr>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </div>
       </div>
     </div>
-  </div>
- </body>
+  </body>
 </html>
 
