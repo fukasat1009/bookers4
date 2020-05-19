@@ -43,28 +43,33 @@
             <%= f.submit %>
            <% end %>
          </div>
-         <div class="col-xs-9">
-          <table class="table table-striped">
-           <thead>
-            <tr>
-             <th width="10%">image</th>
-              <th width="40%">title</th>
-               <th width="40%">opinion</th>
-            </tr>
-            </thead>
-    <% @users.each do |user| %>
-    <tbody>
-     <tr>
-      <td>
-      
-      		<%= attachment_image_tag user, :profile_image, fallback:"no-image.png" , size: "50x50" %>
-    
-      </td>
-      <td><%= user.name %></td>
-      <td><%= link_to "Show", user_path(user), class:"button is-warning is-light" %></td>
-     </tr>
-    </tbody>
-     <% end %>
-   </table>
- </body>
+             
+        <div class="col-xs-9">
+           <table class="table table-striped">
+                     <thead>
+                       <tr>
+                         <th width="10%">image</th>
+                         <th width="30%">title</th>
+                         <th width="40%">opinion</th>
+                         <th width="20%">follow</th>
+                       </tr>
+                     </thead>
+               
+            <% @users.each do |user| %>
+               <tbody>
+                    <tr>
+                       <td>
+                         <%= attachment_image_tag user, :profile_image, fallback:"no-image.png" , size: "50x50" %></td>
+                       <td><%= user.name %></td>
+                       <td><%= link_to "Show", user_path(user), class:"button is-warning is-light" %></td>
+                       <!-- <td>部分テンプレート入れる予定</td> -->
+                    </tr>
+               </tbody>
+            <% end %>
+           </table>
+        </div>
+   </body>
 </html>
+
+
+

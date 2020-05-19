@@ -5,6 +5,9 @@ class CreateFavorites < ActiveRecord::Migration[5.2]
       t.integer :book_id
 
       t.timestamps
+
+ 
+
     end
   end
 end

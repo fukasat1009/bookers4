@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   	@users = User.all
     @post = Book.new
     
+    
 
   end
 
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
       redirect_to current_user
     end
   end
+
 
   def update
   	@user = User.find(params[:id])
