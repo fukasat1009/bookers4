@@ -27,17 +27,23 @@
          </table>
          <%= link_to "", edit_user_path(current_user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
 
-         <%= render 'relationships/follow_button', user: @user %>
-    
-          <%= form_for @post do |f| %>
-           <h2>New book</h2>
-            <%= f.label :title %>
-             <%= f.text_field :title %>
-              <%= f.label :body %>
-             <%= f.text_area :body %>
-            <%= f.submit %>
-           <% end %>
-         </div>
+                        <%= render 'relationships/follow_button', user: @user %>
+                           
+                           <p><%= link_to @user.followings.count, users_follow_list_path(id: @user.id) %>フォロー</p>
+                           <p><%= link_to @user.followers.count, users_follower_list_path(id: @user.id) %>フォロワー</p>
+ 
+
+
+
+         <%= form_for @post do |f| %>
+            <h2>New book</h2>
+               <%= f.label :title %>
+               <%= f.text_field :title %>
+               <%= f.label :body %>
+               <%= f.text_area :body %>
+               <%= f.submit %>
+          <% end %>
+    </div>
     <div class="col-xs-9">
           <table class="table table-striped">
            　<thead>
@@ -60,7 +66,7 @@
                      <td><%= link_to book.title, book_path(book) %></td>
                      <td><%= book.body %></td>
                      <td><%= book.book_comments.count %>件</td>
-                  <td>
+                     <td>
           
                   <% if book.favorited_by?(current_user) %>
                      <%= link_to book_favorites_path(book), method: :delete do %>

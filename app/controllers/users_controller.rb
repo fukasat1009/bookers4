@@ -3,15 +3,20 @@ class UsersController < ApplicationController
   def index
   	@users = User.all
     @post = Book.new
-    
-    
-
   end
+
+  def follow_list
+   @user = User.find(params[:id])
+  end
+
+  def follower_list
+    @user = User.find(params[:id])
+  end 
 
   def show
   	@user = User.find(params[:id])
     @post = Book.new
- 
+
     
   end
 

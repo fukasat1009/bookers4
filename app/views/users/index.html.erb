@@ -49,9 +49,11 @@
                      <thead>
                        <tr>
                          <th width="10%">image</th>
-                         <th width="30%">title</th>
-                         <th width="40%">opinion</th>
+                         <th width="30%">user name</th>
+                         <th width="30%">show</th>
                          <th width="20%">follow</th>
+                         <th width="5%"></th>
+                         <th width="5%"></th>
                        </tr>
                      </thead>
                
@@ -62,7 +64,9 @@
                          <%= attachment_image_tag user, :profile_image, fallback:"no-image.png" , size: "50x50" %></td>
                        <td><%= user.name %></td>
                        <td><%= link_to "Show", user_path(user), class:"button is-warning is-light" %></td>
-                       <!-- <td>部分テンプレート入れる予定</td> -->
+                       <td><%= render 'relationships/follow_button', user: user %></td>
+                       <td><%= link_to user.followings.count, users_follow_list_path(id: user.id) %>follow</td>
+                       <td><%= link_to user.followers.count, users_follower_list_path(id: user.id) %>follower</td>
                     </tr>
                </tbody>
             <% end %>
