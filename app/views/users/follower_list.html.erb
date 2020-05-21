@@ -8,7 +8,7 @@
    	    <th width="40%">introduction</th>
         <th width="10%"></th>
 	</tr>
-        <% @user.followers.each do |follow| %>
+  <% @user.followers.each do |follow| %>
 	<tr>
 		<td><%= attachment_image_tag follow, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
 		<td><%= follow.name %></td>
