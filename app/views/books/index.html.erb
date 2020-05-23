@@ -1,85 +1,94 @@
 <!DOCTYPE html>
-<html>
- <body>
-  <font color="green">
-  <% if flash[:notice] %>
-      <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-  </font>
-
-  <div class="container">
-   <div class="row">
-    <div class="col-xs-3" >
-      <h2>User info</h2>
-        <table class="table table-striped">
-          <tr>
-           <td><%= attachment_image_tag current_user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
-          </tr>
-          <tr>
-         <th>name</th>
-           <td>
-           <!-- ここにユーザーネームを実装-->
-           <%= current_user.name %>
-           </td>
-             </tr>
-               <tr>
-                 <th>introduction</th>
-                   <td>
-                   <!-- ここにプロフィール文を実装-->
-                   <%= current_user.introduction %>
-                   </td>
-                </tr>
-         </table>
-       <%= link_to "", edit_user_path(current_user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
-    
-          <%= form_for @post do |f| %>
-          
-          <% if @post.errors.any? %>
-        <%= @post.errors.count %>error
-        <% @post.errors.full_messages.each do |message| %>
-            <%= message %> 
-        <% end %>
-        <% end %>
-        
-           <h2>New book</h2>
-            <%= f.label :title %>
-             <%= f.text_field :title %>
-              <%= f.label :body %>
-             <%= f.text_area :body %>
-            <%= f.submit %>
-           <% end %>
-         </div>
-         <div class="col-xs-9">
-          <table class="table table-striped">
-           <thead>
-            <tr>
-             <th width="10%">image</th>
-              <th width="40%">title</th>
-               <th width="40%">opinion</th>
-            </tr>
-            </thead>
-            <% @books.each do |book| %>
-             <tbody>
-              <tr>
-               <td>
-                <%= link_to user_path(book.user.id) do %>
-                <%= attachment_image_tag book.user, :profile_image, fallback: "no-image.png",size: "50x50" %>
+  <html>
+    <body>
+      <font color="green">
+            <% if flash[:notice] %>
+              <div class="flash">
+                <%= flash[:notice] %>
+              </div>
             <% end %>
-               </td>
-              <td><%= link_to book.title, book_path(book) %></td>
-               <td><%= book.body %></td>
-               <td><%= render "users/favorite",book: book %></td>
-               </tr>
-            </tbody>
-        <% end %>
-       </table>
-     </div>
-    </div>
-  </div>
+      </font>
+   
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-3" >
+                  <h2>User info</h2>
+                    <table class="table table-striped">
+                      <tr>
+                        <td><%= attachment_image_tag current_user, :profile_image, fallback:"no-image.png",size: "50x50" %></td>
+                      </tr>
+                      <tr>
+                        <th>name</th>
+                          <td>
+                          <!-- ここにユーザーネームを実装-->
+                          <%= current_user.name %>
+                          </td>
+                      </tr>
+                      <tr>
+                         <th>introduction</th>
+                            <td>
+                          <!-- ここにプロフィール文を実装-->
+                            <%= current_user.introduction %>
+                            </td>
+                      </tr>
+                    </table>
+                        
+                  <%= link_to "", edit_user_path(current_user),class:"btn btn-light btn-lg btn-block glyphicon glyphicon-wrench" %>
+                     
+                  <%= form_for @post do |f| %>
+                                            
+                    <% if @post.errors.any? %>
+                       <%= @post.errors.count %>error
+                       <% @post.errors.full_messages.each do |message| %>
+                          <%= message %> 
+                    <% end %>
+                  <% end %>
+                         
+                     <h2>New book</h2>
+                      <%= f.label :title %>
+                       <%= f.text_field :title %>
+                        <%= f.label :body %>
+                       <%= f.text_area :body %>
+                      <%= f.submit %>
+                     <% end %>
+                           
+                </div>
+         
+        <div class="col-xs-9">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th width="10%">image</th>
+                        <th width="40%">title</th>
+                        <th width="40%">opinion</th>
+                    </tr>
+                </thead>
+                      <% @books.each do |book| %>
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      <%= link_to user_path(book.user.id) do %>
+                                         <%= attachment_image_tag book.user, :profile_image, fallback: "no-image.png",size: "50x50" %>
+                                      <% end %>
+                                  </td>
+                                  <td>
+                                     <%= link_to book.title, book_path(book) %>
+                                  </td>
+                                  <td>
+                                     <%= book.body %>                                    
+                                  </td>
+                                  <td class="book_<%= book.id %>">
+                                     <%= render "users/favorite",book: book %>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
   
- </body>
+    </body>
 </html>
 
 

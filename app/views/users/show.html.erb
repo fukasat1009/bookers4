@@ -73,7 +73,7 @@
                                         <%= book.book_comments.count %>件
                                      </td>
                                      
-                                     <td>
+                                     <td class="book_<%= book.id %>">
                                         <%= render "users/favorite",book: book %>
                                     </td>
                        
