@@ -1,0 +1,6 @@
+
+$("#book_<%= @book.id %>").html("<%= j(render partial: "books/comment", locals: {book: @book} ) %>")
+$('textarea').val('');
+$('input').val('');
+
+// document.getElementById("book_<%= @book.id %>").innerHTML = "<%= j(render partial: 'books/comment', locals: {book: @book} ) %>"
